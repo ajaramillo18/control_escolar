@@ -17,13 +17,13 @@
 </head>
 
 <body>
-
-	<div id="wrapper">
-		<div id="header">
-			<h2>Control Escolar</h2>
-		</div>
-	</div>
 	
+	
+	<%@ include file="/header.jsp" %>
+
+	
+	
+
 	<div id="container">
 	
 		<div id="content">

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
@@ -17,11 +18,7 @@
 
 <body>
 	
-	<div id="wrapper">
-		<div id="header">
-			<h2>Control Escolar</h2>
-		</div>
-	</div>
+		<%@ include file="/header.jsp" %>
 
 	<div id="container">
 		<h3>Guardar Alumno</h3>

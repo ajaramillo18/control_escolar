@@ -92,7 +92,8 @@ public class StudentServiceImpl implements StudentService {
 		
 		//TODO se debe generar un codigo unico de pago o algo asi
 		//TODO asi como esta, se debe de resetear el status de P a todos los alumnos cada inicio de mes. 
-				//se debe de cambiar para que el status dependa de si existe o no un registro en payments del mes actual
+				//se debe de cambiar para que el status dependa de si existe o no un registro en payments del mes actual o tambien se puede
+				// usar esto: org.springframework.scheduling.annotation.Scheduled; para hacer un cron que se ejecute cada primero de mes
 		studentDAO.paymentStudent(theId);
 		
 		
