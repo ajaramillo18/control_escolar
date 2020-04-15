@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 
@@ -114,9 +115,18 @@
 							|
 							<!-- display the update link -->
 							<a href="${updateLink}">Modificar</a>
+							<!-- 
+							USER: <security:authentication property="principal.username"/>
+							ROL: <security:authentication property="principal.authorities"/>
+							-->
+							<!-- this link is only visible to Director user -->
+							<security:authorize access="hasAuthority('DIRECTOR')">
 							|
 							<a href="${deleteLink}"
 							   onclick="if (!(confirm('¿Esta seguro que desea eliminar a este alumno?'))) return false">Borrar</a>
+							
+							 </security:authorize>
+							
 						</td>
 						
 					</tr>

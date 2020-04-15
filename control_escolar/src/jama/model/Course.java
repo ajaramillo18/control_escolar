@@ -60,7 +60,7 @@ public class Course {
 	@Column (name = "status")
 	String status;
 	
-	//@Column (name = "teacher_id")
+	//@Column (name = "teacher_id") 
 	//int tutorId;
 	@Column (name = "teacher_name")
 	@NotEmpty(message="*Dato Requerido") 
