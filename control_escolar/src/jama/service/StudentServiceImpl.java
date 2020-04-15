@@ -4,13 +4,17 @@
 package jama.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import jama.dao.CourseDAO;
 import jama.dao.StudentDAO;
+import jama.model.Course;
 import jama.model.Student;
 
 /**
@@ -24,7 +28,12 @@ public class StudentServiceImpl implements StudentService {
 	StudentDAO studentDAO;
 	
 	@Autowired
+	CourseDAO courseDAO;
+	
+	@Autowired
 	EmailService emailService;
+	
+	
 	
 	@Override
 	@Transactional
@@ -55,7 +64,44 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	@Transactional
 	public void save(Student student) {
-		studentDAO.save(student);
+		
+		//if this is an update action
+		if(student.getId()!=0)
+		{
+			
+			Course course = courseDAO.getCourse(Integer.parseInt(student.getCourse()));
+			
+			// add course to set
+			Set<Course> courses = new HashSet<Course>();
+			courses.add(course);
+			
+			//add course set to student object
+			student.setCourses(courses);
+			
+			
+			
+			studentDAO.saveOrUpdate(student);
+			return;
+		}
+					
+		//saves student object to database	
+		int id = studentDAO.save(student);
+		
+		//retrieves selected course object from database
+		Course course = courseDAO.getCourse(Integer.parseInt(student.getCourse()));
+		
+		// add course to set
+		Set<Course> courses = new HashSet<Course>();
+		courses.add(course);
+		
+		//add course set to student object
+		student.setCourses(courses);
+		
+		//saves student object to database again, this time with proper student ID and courses
+
+		studentDAO.saveOrUpdate(student);
+		
+		
 		
 	}
 

@@ -20,9 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-
+import jama.service.CourseService;
 import jama.service.StudentService;
 import lombok.Getter;
+import jama.model.Course;
 import jama.model.Student;
 
 
@@ -42,6 +43,9 @@ public class StudentController {
 	// need to inject our customer service
 	@Autowired	
 	private StudentService studentService;
+	
+	@Autowired	
+	private CourseService courseService;
 
 	@RequestMapping ("/list") //@GetMapping("/get/{id}")
 	public String listStudents(Model model) {
@@ -59,6 +63,15 @@ public class StudentController {
 		
 		Student newStudent = new Student();
 		model.addAttribute(newStudent);
+		
+		
+		// get customers from the service
+		List<Course> courseList = courseService.getCourses();
+		
+		// add the customers to the model
+		model.addAttribute("allCourses", courseList);
+		model.addAttribute("update", false);
+		
 		return "student-form";
 	}
 	
@@ -69,7 +82,6 @@ public class StudentController {
 		if(bindingResult.hasErrors())
 			return  "student-form";
 		
-		System.out.println("XXXXXXXXXXXXXXXXXXXXXXXX");
 		studentService.save(student);
 		
 		return "redirect:/student/list";
@@ -85,6 +97,9 @@ public class StudentController {
 		
 		// set customer as a model attribute to pre-populate the form
 		theModel.addAttribute("student", student);
+		theModel.addAttribute("update", true);
+		List<Course> courseList = courseService.getCourses();
+		theModel.addAttribute("allCourses", courseList);
 		
 		// send over to our form		
 		return "student-form";

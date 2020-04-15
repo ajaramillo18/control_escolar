@@ -52,8 +52,19 @@ public class StudentDAOImpl implements StudentDAO{
 		return lista;
 	}
 
+	
 	@Override
-	public void save(Student student) {
+	public int save(Student student) {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+		 int id = (Integer)currentSession.save(student);
+		 return id;
+		
+	}
+
+	
+	@Override
+	public void saveOrUpdate(Student student) {
 		
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.saveOrUpdate(student);
@@ -113,12 +124,11 @@ public class StudentDAOImpl implements StudentDAO{
 		query.setDate(0, date);
 		query.setInteger(1, id);
 		
-		query.executeUpdate();
-		
-		
-		
+		query.executeUpdate();		
+				
 		
 		
 	}
+
 
 }

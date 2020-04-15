@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 
@@ -60,6 +61,7 @@
 					<th>Apellidos</th>
 					<th>Email</th>
 					<th>Telefono</th>
+					<th>Grupo</th>
 					<th>Accion</th>
 				</tr>
 				
@@ -86,6 +88,14 @@
 						<td> ${tempStudent.lastName} </td>
 						<td> ${tempStudent.email} </td>
 						<td> ${tempStudent.phone} </td>
+						
+						<!-- this works but I changed to c:forEach , so it can work for multiple groups-->
+						<spring:eval var="nameCourse" expression="tempStudent.courses.toArray()[0].name" />
+						
+						<td>
+						<c:forEach items="${tempStudent.courses}" var="item">
+						    ${item.name} <br>
+						</c:forEach> </td>
 						
 						<td>
 						

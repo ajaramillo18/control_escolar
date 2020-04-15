@@ -13,7 +13,7 @@
 
 	<link type="text/css"
 		  rel="stylesheet"
-		  href="${pageContext.request.contextPath}/resources/css/add-student-style.css">
+		  href="${pageContext.request.contextPath}/resources/css/add-form-style.css">
 </head>
 
 <body>
@@ -55,7 +55,27 @@
 						<td><form:input path="phone" />
 						<form:errors path="phone" cssClass="error"/></td>
 					</tr>
-
+					
+					<!-- falta if -->
+					
+					<c:if test="${!update}">					
+					<tr>
+						<td><label>Agregar a grupo:</label></td>
+						<td>
+						<form:select path="course"  items="${allCourses}" itemValue="id" itemLabel="name" multiple="false" size="1"/>					
+						</td>
+					</tr>					
+					</c:if>
+					
+					<c:if test="${update}">					
+					<tr>
+						<td><label>Gupos:</label></td>
+						<td>
+						<form:select path="course"  items="${allCourses}" itemValue="id" itemLabel="name" multiple="false" size="1"/>					
+						</td>
+					</tr>					
+					</c:if>
+					 
 					<tr>
 						<td><label></label></td>
 						<td><input type="submit" value="Save" class="save" /></td>

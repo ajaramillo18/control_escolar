@@ -10,7 +10,9 @@
 		
 	
 	</form:form>
-	<a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar Sesión</a>
-			
+	MENU:<a href="${pageContext.request.contextPath}/student/list">Alumnos</a>
+	|<a href="${pageContext.request.contextPath}/course/list">Grupos</a>
+	|<a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar Sesión</a>
+
 		</div>
 	</div>
