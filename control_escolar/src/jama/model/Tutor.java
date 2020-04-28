@@ -21,15 +21,15 @@ public class Tutor {
 	
 	@Id
 	@Column (name = "tutor_id")
-	int tutorId;
+	private int tutorId;
 	
 	@Column (name = "first_name")
-	String firstName;
+	private String firstName;
 	
 	@Column (name = "last_name")
-	String lastName;
+	private String lastName;
 	
 	@Column (name = "email")
-	String email;
+	private String email;
 
 }

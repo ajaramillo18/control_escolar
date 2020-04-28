@@ -3,6 +3,7 @@
  */
 package jama.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -101,28 +102,39 @@ public class StudentDAOImpl implements StudentDAO{
 	}
 
 	@Override
-	public void paymentStudent(int id) {
+	public void paymentStudent(int id, String concept, double amount) {
 		Session session = sessionFactory.getCurrentSession();
 		
-		// retrieve the student and change the status
-		Student student = session.get(Student.class, id);		
-		student.setStatus("P");		
-		session.saveOrUpdate(student);
+		// retrieve the student and change the status when the concept is Colegiatura
+		if("Colegiatura".equals(concept)) {
+			Student student = session.get(Student.class, id);		
+			student.setStatus("P");		
+			session.saveOrUpdate(student);		
+		}
+
 		
 		//insert new record in payment table
 		//TODO make payment object instead of raw query
 		String queryString = "INSERT INTO `instituto_ingles`.`payment_student`\r\n" + 
 				"(`date`,\r\n" + 
-				"`student_id`)\r\n" + 
+				"`student_id`,\r\n" +
+				"`amount`,\r\n" +
+				"`concept`)\r\n" + 
 				"VALUES\r\n" + 
-				"(?,\r\n" + 
+				"(?,\r\n" +
+				"?,\r\n" +
+				"?,\r\n" + 
 				"?);";
 		SQLQuery query = session.createSQLQuery(queryString);
 		
-		Date date = new Date();  
+		Date date = new Date();  	
 		
-		query.setDate(0, date);
+		Timestamp timestamp = new Timestamp(date.getTime());
+		
+		query.setTimestamp(0, timestamp);
 		query.setInteger(1, id);
+		query.setDouble(2, amount);
+		query.setString(3, concept);
 		
 		query.executeUpdate();		
 				

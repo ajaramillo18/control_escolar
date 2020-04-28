@@ -26,8 +26,7 @@ import javax.persistence.GeneratedValue;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-
-
+import org.hibernate.validator.constraints.Range;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -55,34 +54,40 @@ public class Student {
 	@Id()	
 	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	@Column (name = "student_id")
-	int id;
+	private int id;
 	
 	@Column (name = "first_name")
 	@NotEmpty(message="*Dato Requerido") 
 	@Pattern(regexp="[a-zA-Z]*", message="*Solo letras")
-	String firstName;
+	private String firstName;
 	
 	@Column (name = "last_name")
 	@NotEmpty(message="*Dato Requerido") 
 	@Pattern(regexp="[a-zA-Z]*", message="*Solo letras")
-	String lastName;
+	private String lastName;
 	
 	@Column (name = "email")
 	@NotEmpty(message="*Dato Requerido") 
 	@Email(message="*formato invalido") 
-	String email;
+	private String email;
 	
 	@Column (name = "status")
-	String status;
+	private String status;
 	
 	@Column (name = "tutor_id")
-	int tutorId;
+	private int tutorId;
+	
+	@Column (name = "tuition")
+	@NotNull(message="*Dato Requerido") 
+	@Range(min = 0, max = 100000, message="*fuera del rango requerido")
+	//@Pattern(regexp="\\d+(.\\d{1,2})?", message="*cantidad invalida")
+	private double tuition;
 
 	@Column (name = "phone")
 	@NotEmpty(message="*Dato Requerido") 
 	@Size(min=10, max=10, message="*Deben ser 10 digitos") 
 	@Pattern(regexp="[0-9]*", message="*Solo numeros")
-	String phone;
+	private String phone;
 	
 	@ManyToMany(fetch=FetchType.EAGER,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -92,7 +97,7 @@ public class Student {
 				joinColumns=@JoinColumn(name="student_id"),
 				inverseJoinColumns=@JoinColumn(name="course_id")
 				)		
-	Set<Course> courses;
+	private Set<Course> courses;
 	
 	@Transient
 	String course;

@@ -56,7 +56,12 @@
 						<form:errors path="phone" cssClass="error"/></td>
 					</tr>
 					
-					<!-- falta if -->
+					<tr>
+						<td><label>Mensualidad:</label></td>
+						<td><form:input path="tuition" />
+						<form:errors path="tuition" cssClass="error"/></td>
+					</tr>					
+					
 					
 					<c:if test="${!update}">					
 					<tr>

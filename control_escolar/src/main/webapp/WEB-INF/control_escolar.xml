@@ -30,6 +30,7 @@
 <!-- Add support for component scanning -->
 	<context:annotation-config />
 	<context:component-scan base-package="jama" />
+	<context:property-placeholder location="classpath:config.properties"/> 
 
 	<!-- Define Spring MVC view resolver -->
 	<bean

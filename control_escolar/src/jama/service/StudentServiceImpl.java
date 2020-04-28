@@ -134,19 +134,25 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	@Transactional
-	public void paymentStudent(int theId) {
+	public void paymentStudent(int theId, String concept, double amount) {
 		
 		//TODO se debe generar un codigo unico de pago o algo asi
 		//TODO asi como esta, se debe de resetear el status de P a todos los alumnos cada inicio de mes. 
 				//se debe de cambiar para que el status dependa de si existe o no un registro en payments del mes actual o tambien se puede
 				// usar esto: org.springframework.scheduling.annotation.Scheduled; para hacer un cron que se ejecute cada primero de mes
-		studentDAO.paymentStudent(theId);
+		studentDAO.paymentStudent(theId, concept, amount);
 		
 		
 		Student student = studentDAO.getStudent(theId);
 		//send email
 		//TODO parametrizar los datos del mail usando un properties, como debe usarse en spring
-		emailService.sendMail(student.getEmail(), "Pago instituto de ingles", "Gracias por pagar, te esperamos en clase");
+		//FALTA agregar info del detalle de pago
+		emailService.sendMail(student.getEmail(), "Pago instituto de ingles", "Estimad@ "+student.getFirstName()
+				+".\n Gracias por pagar la cantidad: "
+				+ amount +", "
+						+ "por el concepto de: "
+						+concept
+						+ ". \n Te esperamos en clase.");
 		
 	}
 

@@ -27,5 +27,5 @@ public interface StudentService {
 
 	public List<Student> getStudentsByName(String name);
 
-	public void paymentStudent(int theId);
+	public void paymentStudent(int theId, String concept, double d);
 }

@@ -80,7 +80,7 @@
 					</c:url>	
 					
 					<!-- construct an "payment" link with student id -->
-					<c:url var="paymentLink" value="/student/payment">
+					<c:url var="paymentLink" value="/student/showFormForPayment">
 						<c:param name="studentId" value="${tempStudent.id}" />
 					</c:url>				
 					
@@ -102,14 +102,9 @@
 						
 							<!-- display the payment link -->
 							
-							<c:choose> 
-							  <c:when test="${tempStudent.status == 'P'}">
-							   Pagar
-							  </c:when>
-							  <c:otherwise>
+							
 							    <a href="${paymentLink}">Pagar</a>
-							  </c:otherwise>
-							</c:choose>
+							
 							
 							
 							|

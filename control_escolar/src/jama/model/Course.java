@@ -51,21 +51,21 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column (name = "course_id")
-	int id;
+	private int id;
 	
 	@Column (name = "name")
 	@NotEmpty(message="*Dato Requerido") 	
-	String name;
+	private String name;
 		
 	@Column (name = "status")
-	String status;
+	private String status;
 	
 	//@Column (name = "teacher_id") 
 	//int tutorId;
 	@Column (name = "teacher_name")
 	@NotEmpty(message="*Dato Requerido") 
 	@Pattern(regexp="[a-zA-Z]*", message="*Solo letras")
-	String teacher;
+	private String teacher;
 	
 	@ManyToMany(fetch=FetchType.EAGER,
 			cascade= {CascadeType.PERSIST, CascadeType.MERGE,
@@ -76,6 +76,6 @@ public class Course {
 			joinColumns=@JoinColumn(name="course_id"),
 			inverseJoinColumns=@JoinColumn(name="student_id")
 			)	
-	Set<Student> students;
+	private Set<Student> students;
 
 }
