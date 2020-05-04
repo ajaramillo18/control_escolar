@@ -90,8 +90,7 @@
 						<td> ${tempStudent.email} </td>
 						<td> ${tempStudent.phone} </td>
 						
-						<!-- this works but I changed to c:forEach , so it can work for multiple groups-->
-						<spring:eval var="nameCourse" expression="tempStudent.courses.toArray()[0].name" />
+						
 						
 						<td>
 						<c:forEach items="${tempStudent.courses}" var="item">

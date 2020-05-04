@@ -12,6 +12,7 @@
 	</form:form>
 	MENU:<a href="${pageContext.request.contextPath}/student/list">Alumnos</a>
 	|<a href="${pageContext.request.contextPath}/course/list">Grupos</a>
+	|<a href="${pageContext.request.contextPath}/report/list">Reportes</a>
 	|<a href="#" onclick="document.getElementById('logoutForm').submit();">Cerrar Sesión</a>
 
 		</div>

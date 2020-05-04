@@ -100,6 +100,7 @@ public class StudentDAOImpl implements StudentDAO{
 		return lista;
 		
 	}
+	
 
 	@Override
 	public void paymentStudent(int id, String concept, double amount) {
@@ -143,4 +144,14 @@ public class StudentDAOImpl implements StudentDAO{
 	}
 
 
+	@Override
+	public List<Student>  getStudentsByStatus(String status) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		Query query = currentSession.getNamedQuery("student.getStudentByStatus");		
+		query.setString(0, status);
+		List<Student> lista = query.list();		
+		return lista;
+		
+	}
 }

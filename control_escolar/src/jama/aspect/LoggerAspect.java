@@ -43,7 +43,8 @@ public class LoggerAspect {
 	{
 		String method = joinPoint.getSignature().toShortString();
 		logger.info("---> returning from method: "+ method);
-		logger.info("--->object returned: " + objectReturned.toString());
+		if(objectReturned!=null)
+			logger.info("--->object returned: " + objectReturned.toString());
 		
 	}
 

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +34,8 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	EmailService emailService;
 	
-	
+	@Value("${status.no_pagado}")
+	String statusPagado;
 	
 	@Override
 	@Transactional
@@ -154,6 +156,17 @@ public class StudentServiceImpl implements StudentService {
 						+concept
 						+ ". \n Te esperamos en clase.");
 		
+	}
+
+	@Override
+	@Transactional
+	public List<Student> getStudentsNoPay() {
+		
+		
+		List<Student> studentList = studentDAO.getStudentsByStatus(statusPagado);
+
+		
+		return studentList;
 	}
 
 }

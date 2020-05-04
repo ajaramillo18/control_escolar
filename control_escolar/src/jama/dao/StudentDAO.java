@@ -30,4 +30,6 @@ public interface StudentDAO {
 
 	public void paymentStudent(int theId, String concept, double amount);
 
+	List<Student> getStudentsByStatus(String status);
+
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import jama.model.Course;
 import jama.model.Student;
 
 /**
@@ -28,4 +29,6 @@ public interface StudentService {
 	public List<Student> getStudentsByName(String name);
 
 	public void paymentStudent(int theId, String concept, double d);
+
+	public List<Student> getStudentsNoPay();
 }

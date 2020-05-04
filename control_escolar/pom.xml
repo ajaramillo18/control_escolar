@@ -216,6 +216,12 @@
         </dependency>
         <!-- Hibernate stop-->
         
+        <dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.12.2</version>
+		</dependency>
+        
   </dependencies>
 
   <build>

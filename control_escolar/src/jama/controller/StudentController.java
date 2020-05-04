@@ -81,11 +81,19 @@ public class StudentController {
 	}
 	
 	@PostMapping("/saveStudent")
-	public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult) {
+	public String saveStudent(@ModelAttribute("student") @Valid Student student, BindingResult bindingResult, Model model) {
 		
 		//return to form if there are validation errors
-		if(bindingResult.hasErrors())
+		if(bindingResult.hasErrors()) {
+			
+			// get customers from the service
+			List<Course> courseList = courseService.getCourses();
+			
+			// add the customers to the model
+			model.addAttribute("allCourses", courseList);
 			return  "student-form";
+		}
+			
 		
 		studentService.save(student);
 		
