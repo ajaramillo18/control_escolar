@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentService {
 	EmailService emailService;
 	
 	@Value("${status.no_pagado}")
-	String statusPagado;
+	String statusNoPagado;
 	
 	@Override
 	@Transactional
@@ -86,7 +86,11 @@ public class StudentServiceImpl implements StudentService {
 			return;
 		}
 					
-		//saves student object to database	
+
+		//set status to Active
+		student.setStatus("A");
+
+		//saves student object to database		
 		int id = studentDAO.save(student);
 		
 		//retrieves selected course object from database
@@ -163,7 +167,7 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> getStudentsNoPay() {
 		
 		
-		List<Student> studentList = studentDAO.getStudentsByStatus(statusPagado);
+		List<Student> studentList = studentDAO.getStudentsByStatus(statusNoPagado);
 
 		
 		return studentList;

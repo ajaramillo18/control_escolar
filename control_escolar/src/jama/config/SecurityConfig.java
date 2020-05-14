@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+	//TODO for production change inbound rule of databes in AWS to acept only conection from elastic bean
 	
 	@Autowired
 	private DataSource dataSource;

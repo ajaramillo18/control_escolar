@@ -83,6 +83,15 @@ public class ReportController {
 					
 		
 		response.setContentType("text/html");
+		
+		//if no one has paid yet
+		if(studentList.isEmpty()) {
+			response.getWriter().print("Nadie ha pagado aun");
+			response.getWriter().flush();
+			response.getWriter().close();
+			return;
+		}
+		
 		JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(studentList);
 		//InputStream inputStream = this.getClass().getResourceAsStream("/main/webapp/resources/reports/student_not_pay_report.jrxml");
 		JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);

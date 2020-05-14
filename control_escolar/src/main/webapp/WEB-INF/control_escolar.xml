@@ -43,7 +43,7 @@
 	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/instituto_ingles?useSSL=false&amp;serverTimezone=UTC" />
+        <property name="jdbcUrl" value="jdbc:mysql://instituto-ingles.cyv22pjuqhqb.us-east-2.rds.amazonaws.com:3306/instituto_ingles?useSSL=false&amp;serverTimezone=UTC" />
         <property name="user" value="instituto_ingles" />
         <property name="password" value="instituto_ingles" /> 
 
@@ -83,7 +83,7 @@
         <property name="host" value="smtp.gmail.com"/>
         <property name="port" value="587"/>
         <property name="username" value="ajaramillo23@gmail.com"/>
-        <property name="password" value="armando84"/>
+        <property name="password" value="pjylihtehvpzuivw"/>
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>
