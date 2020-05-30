@@ -55,12 +55,12 @@ public class Student {
 
 	@Column(name = "first_name")
 	@NotEmpty(message = "*Dato Requerido")
-	@Pattern(regexp = "[a-zA-Z\\s]*", message = "*Solo letras")
+	@Pattern(regexp = "[ÁÉÍÓÚáéíóúÑñÜüa-zA-Z\\s]*", message = "*Solo letras")
 	private String firstName;
 
 	@Column(name = "last_name")
 	@NotEmpty(message = "*Dato Requerido")
-	@Pattern(regexp = "[a-zA-Z\\s]*", message = "*Solo letras")
+	@Pattern(regexp = "[ÁÉÍÓÚáéíóúÑñÜüa-zA-Z\\s]*", message = "*Solo letras")
 	private String lastName;
 
 	@Column(name = "email")

@@ -64,7 +64,7 @@ public class Course {
 	//int tutorId;
 	@Column (name = "teacher_name")
 	@NotEmpty(message="*Dato Requerido") 
-	@Pattern(regexp="[a-zA-Z]*", message="*Solo letras")
+	@Pattern(regexp = "[ÁÉÍÓÚáéíóúÑñÜüa-zA-Z\\s]*", message = "*Solo letras")
 	private String teacher;
 	
 	@ManyToMany(fetch=FetchType.EAGER,
