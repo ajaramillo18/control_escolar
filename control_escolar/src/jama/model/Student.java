@@ -98,4 +98,8 @@ public class Student {
 
 	@Transient
 	String course;
+	
+	//TODO temporal for payment details, this should not be here but in the future payment model class
+	@Transient
+	String detail;
 }

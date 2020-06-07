@@ -3,8 +3,11 @@
  */
 package jama.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
@@ -132,7 +135,7 @@ public class StudentController {
 		
 		// delete the customer
 		String concept ="";
-		studentService.paymentStudent(student.getId(), student.getCourse(), student.getTuition());
+		studentService.paymentStudent(student.getId(), student.getCourse(), student.getTuition(), student.getDetail());
 		
 		return "redirect:/student/list";
 	}
@@ -154,6 +157,16 @@ public class StudentController {
 		
 		// get the student from our service
 		Student student = studentService.getStudent(id);	
+		
+		
+		// pre fill the current date in details
+		
+		Locale espanol = new Locale("es","ES");
+		String pattern = "MMMM yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern,espanol);
+		String date = simpleDateFormat.format(new Date());		
+		student.setDetail(date.toUpperCase());
+		
 				
 		// set student as a model attribute to pre-populate the form
 		model.addAttribute("student", student);

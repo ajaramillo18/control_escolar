@@ -17,7 +17,6 @@ CREATE TABLE `tutor` (
 
 DROP TABLE IF EXISTS `student`;
 
-DELETE  from `student`;
 
 CREATE TABLE `student` (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -66,6 +65,7 @@ CREATE TABLE `payment_student` (
   `student_id` int(11) NOT NULL,
   `amount` decimal(15,2) DEFAULT NULL,
   `concept` varchar(50) DEFAULT NULL,
+  `detail` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`date` , `student_id`)
  -- CONSTRAINT FK_Student FOREIGN KEY (student_id) REFERENCES student(student_id) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;

@@ -61,7 +61,13 @@
 						<td>
 						<form:select path="course"  items="${allConcepts}" id="concepto" multiple="false" size="1"/>					
 						</td>
-					</tr>					
+					</tr>		
+					
+					<tr>
+						<td><label>Detalle:</label></td>
+						<td><form:input path="detail" />
+						</td>
+					</tr>			
 					
 					<tr>
 						<td><label>Monto:</label></td>

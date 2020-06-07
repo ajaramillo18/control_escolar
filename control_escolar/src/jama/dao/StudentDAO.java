@@ -28,7 +28,7 @@ public interface StudentDAO {
 
 	public List<Student> getStudentsByName(String name);
 
-	public void paymentStudent(int theId, String concept, double amount);
+	public void paymentStudent(int theId, String concept, double amount, String details);
 
 	List<Student> getStudentsByStatus(String status);
 

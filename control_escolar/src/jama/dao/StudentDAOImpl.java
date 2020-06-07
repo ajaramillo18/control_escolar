@@ -103,7 +103,7 @@ public class StudentDAOImpl implements StudentDAO{
 	
 
 	@Override
-	public void paymentStudent(int id, String concept, double amount) {
+	public void paymentStudent(int id, String concept, double amount, String detail) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		// retrieve the student and change the status when the concept is Colegiatura
@@ -120,9 +120,11 @@ public class StudentDAOImpl implements StudentDAO{
 				"(`date`,\r\n" + 
 				"`student_id`,\r\n" +
 				"`amount`,\r\n" +
-				"`concept`)\r\n" + 
+				"`concept`,\r\n" +
+				"`detail`)\r\n" + 
 				"VALUES\r\n" + 
 				"(?,\r\n" +
+				"?,\r\n" +
 				"?,\r\n" +
 				"?,\r\n" + 
 				"?);";
@@ -136,6 +138,7 @@ public class StudentDAOImpl implements StudentDAO{
 		query.setInteger(1, id);
 		query.setDouble(2, amount);
 		query.setString(3, concept);
+		query.setString(4, detail);
 		
 		query.executeUpdate();		
 				
